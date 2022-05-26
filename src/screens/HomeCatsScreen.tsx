@@ -1,19 +1,21 @@
-import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
-import { Text, View } from 'react-native'
-import { Styles } from '../themes/Styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useCats } from '../hooks/useCats';
+import { StackScreenProps } from '@react-navigation/stack'
+import { Text, View } from 'react-native'
+
 import { useAppDispatch } from '../redux/app/hooks';
-import { addCatsList, Cat } from '../redux/features/Cats';
+import { addCatsList } from '../redux/features/Cats';
+import { GetCats } from '../hooks/GetCats';
+import { Styles } from '../themes/Styles';
+
 
 interface Props extends StackScreenProps<any,any>{};
 
 export const HomeCatsScreen = ({ navigation }: Props) => {
 
-  const { getCats } = useCats();
   const catsDispath = useAppDispatch();
-  getCats().then((cats) => {
+
+  GetCats().then((cats) => {
     catsDispath(addCatsList(cats));
   })
 

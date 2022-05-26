@@ -5,23 +5,24 @@ import { RootStackParams } from '../navigation/StackNavigator';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Styles } from '../themes/Styles';
 
-interface Props extends StackScreenProps<RootStackParams, 'CatDescription'>{}
+interface Props extends StackScreenProps<RootStackParams, 'CatDescriptionScreen'>{}
 
-export const CatDescription = ({ route }: Props) => {
+export const CatDescriptionScreen = ({ route }: Props) => {
   const {cat} = route.params
   const uri = cat.image?.url
+
   return (
     <ScrollView style={{flex:1, backgroundColor: 'white'}}>
-
         <View style={{marginTop: 10}}>
-        {
-            (uri != null )
-            ?<Image source={{uri}} style={{ ...Styles.containerCatImage, marginTop: 0}} />
-            :<Text style={{ color: 'black', fontSize: 20, textAlign: 'center'}}>Image Not Found</Text>
-        }
+            {
+                (uri != null )
+                ?<Image source={{uri}} style={{ ...Styles.containerCatImage, marginTop: 0}} />
+                :<Text style={{ color: 'black', fontSize: 20, textAlign: 'center'}}>Image Not Found</Text>
+            }
         </View>
 
         <View style={ Styles.containerDescription }>
+
             <View style={{flexDirection: 'row'}}>
                 <Text style={Styles.titleDescriptionCat}>Breed: </Text> 
                 <Text style={Styles.textDescriptionCat}>{cat.name} </Text>
@@ -38,6 +39,7 @@ export const CatDescription = ({ route }: Props) => {
             <View style={{flexDirection: 'row', marginTop: 10}}>
                 <Text style={{...Styles.textDescriptionCat, marginLeft: 0}}>{cat.description} </Text>
             </View> 
+            
         </View>
     </ScrollView>
   )

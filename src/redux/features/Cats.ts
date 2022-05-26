@@ -1,17 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export interface Cats {
+interface Cats {
     catsList: Cat[]
 }
 
 export interface Cat {
-        id:                  string;
-        name:                string;
-        origin:              string;
-        description:         string;
-        intelligence:        number;
-        image?:              Image;
-    
+    id:           string;
+    name:         string;
+    origin:       string;
+    description:  string;
+    intelligence: number;
+    image?:       Image;
 }
 
 interface Image {
@@ -20,7 +19,6 @@ interface Image {
     height?: number;
     url?:    string;
 }
-
 
 const initialState: Cats = {
     catsList: []

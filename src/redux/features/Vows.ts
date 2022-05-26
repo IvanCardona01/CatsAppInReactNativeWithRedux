@@ -16,16 +16,21 @@ const initialState: VowsListState = {
     vows: []
 }
 
+interface PropsReducer {
+    cat: Cat
+    value: number
+}
+
 const vowsSlice = createSlice({
     name:'vowsList',
     initialState,
     reducers:{
-        addNewLikeVote: (state, action: PayloadAction<Cat>) => {
-            let cat = action.payload
+        addNewVote: (state, action: PayloadAction<PropsReducer>) => {
+            let {cat, value} = action.payload
             if(state.vows != []){
                 for (let vote = 0; vote < state.vows.length; vote++) {
                     if (state.vows[vote].breed == cat.name) {
-                        state.vows[vote].countVows++
+                        state.vows[vote].countVows += value
                         return
                     }
                 }
@@ -34,30 +39,12 @@ const vowsSlice = createSlice({
                 breed: cat.name,
                 imageUrl: (cat.image?.url != null)?cat.image?.url:undefined,
                 origin: cat.origin,
-                countVows:  1
-            })
-            return
-        },
-        addNewDislikeVote: (state, action: PayloadAction<Cat>) => {
-            let cat = action.payload
-            if(state.vows != []){
-                for (let vote = 0; vote < state.vows.length; vote++) {
-                    if (state.vows[vote].breed == cat.name) {
-                        state.vows[vote].countVows--
-                        return
-                    }
-                }
-            }
-            state.vows.push({
-                breed: cat.name,
-                imageUrl: (cat.image?.url != null)?cat.image?.url:undefined,
-                origin: cat.origin,
-                countVows:  -1
+                countVows: value
             })
             return
         }
     }
 });
 
-export const { addNewDislikeVote, addNewLikeVote } = vowsSlice.actions;
+export const { addNewVote } = vowsSlice.actions;
 export default vowsSlice.reducer;

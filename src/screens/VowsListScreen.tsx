@@ -1,13 +1,16 @@
 import React from 'react'
 import { View, Text } from 'react-native';
-import { useAppSelector } from '../redux/app/hooks';
-import { Styles } from '../themes/Styles';
 import { FlatList } from 'react-native-gesture-handler';
+
+import { useAppSelector } from '../redux/app/hooks';
 import { CardVote } from '../components/CardVote';
+import { Styles } from '../themes/Styles';
+
 
 export const VowsListScreen = () => {
 
   const vows = useAppSelector(state => state.vowsList.vows)
+
   const vowsIsEmpty = vows.length == 0
   if(vowsIsEmpty){
     return(

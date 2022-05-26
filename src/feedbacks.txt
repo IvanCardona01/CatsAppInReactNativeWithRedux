@@ -1,0 +1,2 @@
+1. Rosolver el bug porque no funcionar el like/dislike -OK
+2. Refactor del la función de LIke/Dislike -OK
